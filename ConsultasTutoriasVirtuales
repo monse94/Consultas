@@ -1,0 +1,37 @@
+/*=======================================================================================================================================================*/
+CONSULTA1
+Mostrar el top descendente a todos los profesores que han dado tutorías, 
+deben listarse primero el grupo de los tutores externos y luego los de contratación propia. 
+/*=======================================================================================================================================================*/
+
+select   
+	CONTRATO.MODALIDAD,TUTORIA.ID_TUTORIA,TUTOR.NOMBRE_TUTOR
+from CONTRATO
+inner join TUTORIA on  CONTRATO.ID_CONTRATO=TUTORIA.ID_TUTORIA
+INNER JOIN TUTOR on TUTOR.ID_TUTOR=TUTORIA.ID_TUTORIA
+order by TUTORIA.ID_TUTORIA ASC
+/*=======================================================================================================================================================*/
+CONSUTA 2
+Mostrar por año y mes cuanto la empresa ha recibido en ingresos por tutorías.
+/*=======================================================================================================================================================*/
+
+SELECT DISTINCT TUTORIA.ID_TUTORIA, PLAN_COMPRA.ID_PLANCOMPRA,PLAN_COMPRA.VALOR, YEAR (PLAN_COMPRA.TIEMPO_INICIO) AÑO, MONTH (PLAN_COMPRA.TIEMPO_INICIO) MES
+FROM PLAN_COMPRA INNER JOIN TUTORIA ON TUTORIA.ID_TUTORIA=PLAN_COMPRA.ID_PLANCOMPRA
+WHERE PLAN_COMPRA.ID_PLANCOMPRA IN (1, 2,3)
+ORDER BY PLAN_COMPRA.ID_PLANCOMPRA;
+/*=======================================================================================================================================================*/
+CONSULTA3
+Mostrar por país y por provincia la cantidad de estudiantes a los que el centro ha dado tutorías.
+/*=======================================================================================================================================================*/
+
+SELECT DISTINCT TUTORIA.ID_ACEPTACION,'ACEPTADA'AS ESTADO,TUTORADO.ID_TUTORADO,TUTORIA.ID_TUTORIA,TUTORADO.NOMBRE_TUTORADO,TUTORADO.PAIS_TUTORADO,TUTORADO.PROVINCIA_TUTORADO
+FROM TUTORADO INNER JOIN TUTORIA ON TUTORIA.ID_TUTORADO=TUTORADO.ID_TUTORADO
+where TUTORIA.ID_ACEPTACION=1
+/*=======================================================================================================================================================*/
+Mostrar por año la cantidad de propuestas de tutoría rechazadas.
+/*=======================================================================================================================================================*/
+SELECT DISTINCT TUTORIA.ID_ACEPTACION,'RECHAZADA' AS ESTADO,TUTORADO.ID_TUTORADO,TUTORIA.ID_TUTORIA,TUTORADO.NOMBRE_TUTORADO,TUTORADO.PAIS_TUTORADO,TUTORADO.PROVINCIA_TUTORADO, YEAR (PLAN_COMPRA.TIEMPO_INICIO) AÑO
+FROM TUTORADO INNER JOIN TUTORIA ON TUTORIA.ID_TUTORADO=TUTORADO.ID_TUTORADO
+INNER JOIN PLAN_COMPRA ON PLAN_COMPRA.ID_PLANCOMPRA=TUTORIA.ID_TUTORIA
+where TUTORIA.ID_ACEPTACION IN (2)
+ORDER BY TUTORIA.ID_ACEPTACION
