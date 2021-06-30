@@ -1,5 +1,5 @@
 /*=======================================================================================================================================================*/
-CONSULTA1
+CONSULTA 1
 Mostrar el top descendente a todos los profesores que han dado tutorías, 
 deben listarse primero el grupo de los tutores externos y luego los de contratación propia. 
 /*=======================================================================================================================================================*/
@@ -11,7 +11,7 @@ inner join TUTORIA on  CONTRATO.ID_CONTRATO=TUTORIA.ID_TUTORIA
 INNER JOIN TUTOR on TUTOR.ID_TUTOR=TUTORIA.ID_TUTORIA
 order by TUTORIA.ID_TUTORIA ASC
 /*=======================================================================================================================================================*/
-CONSUTA 2
+CONSULTA 2
 Mostrar por año y mes cuanto la empresa ha recibido en ingresos por tutorías.
 /*=======================================================================================================================================================*/
 
@@ -20,7 +20,7 @@ FROM PLAN_COMPRA INNER JOIN TUTORIA ON TUTORIA.ID_TUTORIA=PLAN_COMPRA.ID_PLANCOM
 WHERE PLAN_COMPRA.ID_PLANCOMPRA IN (1, 2,3)
 ORDER BY PLAN_COMPRA.ID_PLANCOMPRA;
 /*=======================================================================================================================================================*/
-CONSULTA3
+CONSULTA 3
 Mostrar por país y por provincia la cantidad de estudiantes a los que el centro ha dado tutorías.
 /*=======================================================================================================================================================*/
 
